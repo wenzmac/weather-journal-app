@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=News+Cycle:wght@400;700&family=Staatliches&display=swap');
+
+html {
+  background-color: #F2F2ED;
+}
+
+body {
+  font: 27px/1.4 'News Cycle', sans-serif;
+  color: #333132;
+}
+
+h1 {
+  font: 50px/1 'Staatliches', cursive;
+  color: #ff665a;
+  margin-top: 80px;
+}
+
+h2 {
+  font: 22px/0.5 700;
+  color: #7D407D;
+  margin-top: 0;
+}
+
+#app{
+    display: grid;
+    grid-auto-rows: minmax(100px, auto);
+    /* grid-template-columns:  */
+    color: #7D407D;
+    justify-content: center;
+    grid-gap: 1em;
+}
+
+
+
+#holderEntry{
+
+}
+
+#date {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333132;
+  margin: 20px 0 10px;
+}
+
+#temp{
+  font: 35px/1 'Staatliches', cursive;
+  color: #ff665a;
+}
+
+#content{
+  font-size: 20px;
+  color: #333132;
+  margin: 5px 0 ;
+}
+
+.headline {
+
+}
+.title{
+
+}
+
+/*  Basic Styling To Override Default For Basic HTML Elements */
+label{
+    display:block;
+    font-size: 27px;
+}
+
+input{
+    display:block;
+    width: 320px;
+    background:#f0d43a;
+    font-size: 30px;
+    font-weight: bold;
+    color: #7D407D;
+    border: 1px grey;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+button{
+    background: #ff665a;
+    color: #fff;
+    font-size: 18px;
+    text-transform: uppercase;
+    border: none;
+    margin: 40px 0;
+    padding: 10px 15px;
+}
+
+button:hover {
+    background: #7D407D;
+    color: #f0d43a;
+}
+
+textarea{
+    color: #f0d43a;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+}
+/* Reset style for HTML element on active to have no border*/
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+/* Style for Placeholder Text*/
+::placeholder { /* Firefox, Chrome, Opera */
+    color: #f0d43a;
+    font-family: 'Oswald', sans-serif;
+
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #f0d43a;
+    font-family: 'Oswald', sans-serif;
+
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #f0d43a;
+    font-family: 'Oswald', sans-serif;
+
+}
