@@ -1,12 +1,13 @@
 /* Global Variables */
 let baseURL = 'http://api.openweathermap.org/data/2.5/weather?q=';
-const apiKey = '747d3e3f8a33563d0855e9834afa3c34';
+const apiKey = 'XXXXX';
 
 // Async post function
 const postData = async (url='', data={}) => {
   const response = await fetch(url, {
     method: 'POST',
-    credentials: 'same-origin',
+    //credentials: 'same-origin',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -25,7 +26,8 @@ const postData = async (url='', data={}) => {
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getDate()+'.'+ d.getMonth()+'.'+ d.getFullYear();
+let month = d.getMonth() +1;
+let newDate = d.getDate()+'.'+month+'.'+ d.getFullYear();
 
 // Listen for click of button
 document.getElementById('generate').addEventListener('click', performAction);
@@ -33,20 +35,19 @@ document.getElementById('generate').addEventListener('click', performAction);
 // Async fetch that gets info for the URL to get weather data
 function performAction(e) {
   const cityName =  document.getElementById('city').value;
-  const userComment = document.getElementById('comment').value;
+  const userFeelings = document.getElementById('feelings').value;
   getTemp(baseURL, cityName, apiKey)
   .then(function(data){
     console.log(data);
-    // Creates the URL for API
-    postData('/addWeatherData', {temperature:data.main.temp, date:newDate, comment:userComment});
+    postData('http://localhost:3000/addWeatherData', {temperature:data.main.temp, date:newDate, feelings:userFeelings});
     // Calls update user interface function
     updateUI();
   });
 }
 
-//Async post that creates the URL and posts data
+//Async post that creates the URL and returns data
 const getTemp = async (baseURL, cityName, apiKey)=>{
-  const response = await fetch(baseURL + cityName + '&appid=' + apiKey);
+  const response = await fetch(baseURL + cityName + '&appid=' + apiKey + '&units=metric');
   try {
     const data = await response.json();
       console.log(data);
@@ -60,13 +61,13 @@ const getTemp = async (baseURL, cityName, apiKey)=>{
 
 // Update user interface
 const updateUI = async () => {
-    const request = await fetch('/all');
+    const request = await fetch('http://localhost:3000/all');
     try {
         const allData = await request.json();
         console.log(allData);
-        document.getElementById('date').innerHTML = allData.date;
-        document.getElementById('temp').innerHTML = allData.temperature;
-        document.getElementById('comment').innerHTML = allData.comment;
+        document.getElementById('date').innerHTML = `Date: ${allData.date}`;
+        document.getElementById('temp').innerHTML = `${allData.temperature} C`;
+        document.getElementById('content').innerHTML = `You feel: ${allData.feelings}`;
     }
     catch (error) {
         console.log("error", error);

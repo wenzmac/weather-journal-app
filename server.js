@@ -43,15 +43,7 @@ app.post('/addWeatherData', addData);
 function addData (request, response) {
     projectData.temperature = request.body.temperature;
     projectData.date = request.body.date;
-    projectData.userComment = request.body.comment;
+    projectData.feelings = request.body.feelings;
     response.end();
     console.log(projectData);
 }
-/*
-const data = [];
-
-app.post('/', function(request, response) {
-  console.log(request.body);
-  data.push(request.body);
-});
-*/
